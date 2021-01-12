@@ -38,15 +38,22 @@ namespace Asteroids
 
         public static void Load()
         {
-            const int visualObjectsCount = 20;
+            const int visualObjectsCount = 40;
             __GameObjects = new VisualObject[visualObjectsCount];
 
-            for (var i = 0; i < __GameObjects.Length; i++)
+            for (var i = 0; i < __GameObjects.Length/2; i++)
             {
                 __GameObjects[i] = new VisualObject(
                     new Point(600, i*20),
                     new Point(15-i, 20-i),
                     new Size(20, 20));
+            }
+            for (var i = __GameObjects.Length / 2; i < __GameObjects.Length; i++)
+            {
+                __GameObjects[i] = new Star(
+                    new Point(600, (int)(i / 2.0 * 20)),
+                    new Point(-i, 0),
+                    10);
             }
         }
 
