@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Asteroids
@@ -14,10 +11,20 @@ namespace Asteroids
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            Form gameForm = new Form();
+            
+            gameForm.Show();
+            gameForm.Width = 800;
+            gameForm.Height = 600;
+
+
+            Game.Initialize(gameForm);
+            Game.Draw();
+
+            Application.Run(gameForm);
         }
     }
 }
