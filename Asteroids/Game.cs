@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using Asteroids.VisualObjects;
 
 namespace Asteroids
 {
@@ -25,7 +27,7 @@ namespace Asteroids
             Graphics g = GameForm.CreateGraphics();
             __Buffer = __Context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
-            Timer timer = new Timer{Interval = 100};
+            var timer = new Timer{Interval = 100};
             timer.Tick += OnTimerClick;
             timer.Start();
         }
@@ -38,23 +40,24 @@ namespace Asteroids
 
         public static void Load()
         {
-            const int visualObjectsCount = 40;
-            __GameObjects = new VisualObject[visualObjectsCount];
-
-            for (var i = 0; i < __GameObjects.Length/2; i++)
+            var game_objects = new List<VisualObject>();
+            for (var i = 0; i < 15; i++)
             {
-                __GameObjects[i] = new VisualObject(
-                    new Point(600, i*20),
-                    new Point(15-i, 20-i),
-                    new Size(20, 20));
+                game_objects.Add(new Asteroid(
+                    new Point(600, i * 20),
+                    new Point(15 - i, 20 - i),
+                     20));
             }
-            for (var i = __GameObjects.Length / 2; i < __GameObjects.Length; i++)
+
+            for (var i = 0; i < 15; i++)
             {
-                __GameObjects[i] = new Star(
+                game_objects.Add(new Star(
                     new Point(600, (int)(i / 2.0 * 20)),
                     new Point(-i, 0),
-                    10);
+                    10));
             }
+
+            __GameObjects = game_objects.ToArray();
         }
 
         public static void Draw()
