@@ -11,7 +11,7 @@ namespace Asteroids.VisualObjects
     {
         //private static readonly Image __Image = Image.FromFile("Images/Asteroid.png");
 
-        public  int Power { get; set; }
+        public int Power { get; set; } = 3;
 
         public Asteroid(Point Position,Point Direction, int Size) : base (Position, Direction, new Size(Size,Size), Properties.Resources.Asteroid) 
         {
