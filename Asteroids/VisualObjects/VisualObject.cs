@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace Asteroids.VisualObjects
         protected Point _Direction;
         protected Size _Size;
 
+        public bool Enabled { get; set; } = true;
         protected VisualObject(Point Position, Point Direction, Size Size)
         {
             _Position = Position;
@@ -24,6 +26,7 @@ namespace Asteroids.VisualObjects
 
         public virtual void Update()
         {
+            if(!Enabled) return;
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;
 

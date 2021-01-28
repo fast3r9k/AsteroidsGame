@@ -11,6 +11,8 @@ namespace Asteroids.VisualObjects
 
         public override void Draw(Graphics g)
         {
+            if (!Enabled) return;
+
             g.DrawLine(Pens.WhiteSmoke,
                 (int) _Position.X,(int) _Position.Y,
                 (int) (_Position.X + _Size.Width), (int) (_Position.Y + _Size.Width));
@@ -22,6 +24,8 @@ namespace Asteroids.VisualObjects
 
         public override void Update()
         {
+            if (!Enabled) return;
+
             _Position.X += _Direction.X;
             if (_Position.X < 0)
                 _Position.X = Game.Width + _Size.Width;
