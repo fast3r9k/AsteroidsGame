@@ -2,34 +2,31 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
 
-namespace Asteroids
+namespace Asteroids.VisualObjects
 {
-    class VisualObject
+    internal abstract class VisualObject
     {
         protected Point _Position;
         protected Point _Direction;
         protected Size _Size;
 
-        public VisualObject(Point Position, Point Direction, Size Size)
+        public bool Enabled { get; set; } = true;
+        protected VisualObject(Point Position, Point Direction, Size Size)
         {
             _Position = Position;
             _Direction = Direction;
             _Size = Size;
         }
 
-        public virtual void Draw(Graphics g)
-        {
-            g.DrawEllipse(Pens.White, 
-                _Position.X, _Position.Y,
-                _Size.Width, _Size.Height);
-        }
+        public abstract void Draw(Graphics g);
 
         public virtual void Update()
         {
+            if(!Enabled) return;
             _Position.X += _Direction.X;
             _Position.Y += _Direction.Y;
 

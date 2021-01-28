@@ -14,7 +14,7 @@ namespace Asteroids
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Form gameForm = new Form();
+            var gameForm = new Form();
             
             gameForm.Show();
             gameForm.Width = 800;
